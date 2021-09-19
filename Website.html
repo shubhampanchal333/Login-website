@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Website</title>
+    <script type="text/javascript">
+        var clevertap = { event: [], profile: [], account: [], onUserLogin: [], notifications: [], privacy: [] };
+        // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
+        clevertap.account.push({ "id": "Z44-Z4K-K65Z" });
+        clevertap.privacy.push({ optOut:false }); //set the flag to true, if the user of the device opts out of sharing their data
+        clevertap.privacy.push({ useIP: false }); //set the flag to true, if the user agrees to share their IP data
+        (function () {
+            var wzrk = document.createElement('script');
+            wzrk.type = 'text/javascript';
+            wzrk.async = true;
+            wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wzrk, s);
+        })();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="demo.js"></script>
+    <script src="push.min.js"></script>
+    <script src="serviceWorker.min.js"></script>
+    <link rel="stylesheet" href="trialstyle.css">
+</head>
+
+<body>
+    <div class="container_date">
+        Current time is <span id="time"></span>
+    </div>
+    <script>
+        console.log("date and time indicator");
+        setInterval(updateTime, 1000);
+        function updateTime() {
+            time.innerHTML = new Date();
+        }
+    </script>
+    <div class="container">
+        <section class="text-gray-600 body-font relative">
+            <div class="container px-5 py-24 mx-auto">
+                <div class="flex flex-col text-center w-full mb-12">
+                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Registration</h1>
+                </div>
+                <form action="#">
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details">Full Name</span>
+                            <input type="text" placeholder="Enter your name" id="name" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Email address</address></span>
+                            <input type="email" placeholder="Enter your Email address" id="email" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Phone number</span>
+                            <input type="text" placeholder="Enter your Phone Number" id="ph_no" required>
+                            <small>With country code eg:+91 </small>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Date of Birth</span>
+                            <input type="date" name="Enter your Date of Birth" id="dob">
+                        </div>
+                    </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="login_btn">Login</button>
+            <button type="submit" class="btn btn-secondary">Profile </button>
+            <a href="javascript:void(0)" onclick="start()">Ask for push</a>
+            <script>
+                function start() {
+                    Push.create("Would you like to receive Push Notifications?", {
+                        body: "We promise to only send you relevant content and give you updates on your transactions!!",
+                        icon: '/bell.png',
+                        timeout: 4000,
+                        onClick: function () {
+                            window.focus();
+                            this.close();
+                        }
+                    });
+
+                }
+            </script>
+            </form>
+
+
+</body>
+
+</html>
